@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Danh sách phiếu cọc";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3 class="mt-4 mb-3">Danh sách phiếu cọc</h3>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Mã phiếu</th>
+            <th>Khách hàng</th>
+            <th>Số điện thoại</th>
+            <th>Ngày cọc</th>
+            <th>Số tiền cọc (₫)</th>
+            <th>Phương thức TT</th>
+            <th>Trạng thái cọc</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pc in Model)
+        {
+            <tr>
+                <td>@pc.MaPC</td>
+                <td>@pc.HoTen</td>
+                <td>@pc.SoDienThoai</td>
+                <td>@pc.NgayCoc.ToString("dd-MM-yyyy")</td>
+                <td>@string.Format("{0:N0}", pc.SoTienCoc)</td>
+                <td>@pc.PTTT</td>
+                <td>@pc.TrangThaiCoc</td>
+                <td class="text-right">
+                    <div class="dropdown dropdown-action">
+                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v ellipse_color"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            @Html.ActionLink("Chi tiết", "ChiTietPhieuCoc", new { id = pc.MaPC }, new { @class = "dropdown-item" })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

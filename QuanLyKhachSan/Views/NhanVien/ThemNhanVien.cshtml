@@ -1,0 +1,82 @@
+﻿@model QuanLyKhachSan.Models.NhanVien
+
+@{
+    ViewBag.Title = "Thêm Nhân Viên";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <h3 class="page-title mt-5">Thêm Nhân Viên</h3>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("ThemNhanVien", "NhanVien", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row formtype">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Họ tên</label>
+                @Html.TextBoxFor(m => m.HoTen, new { @class = "form-control", placeholder = "Nhập họ tên" })
+                @Html.ValidationMessageFor(m => m.HoTen, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Ngày sinh</label>
+                <div class="cal-icon">
+                    @Html.TextBoxFor(m => m.NgaySinh, new { @class = "form-control datetimepicker", placeholder = "dd/MM/yyyy" })
+                </div>
+                @Html.ValidationMessageFor(m => m.NgaySinh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Giới tính</label>
+                @Html.DropDownListFor(m => m.GioiTinh,
+                    new SelectList(new[] {
+                        new { Value = "Nam", Text = "Nam" },
+                        new { Value = "Nữ", Text = "Nữ" }
+                    }, "Value", "Text"),
+                    "Chọn giới tính",
+                    new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.GioiTinh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Số điện thoại</label>
+                @Html.TextBoxFor(m => m.SoDienThoai, new { @class = "form-control", placeholder = "0123456789" })
+                @Html.ValidationMessageFor(m => m.SoDienThoai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Email</label>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "example@gmail.com" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Địa chỉ</label>
+                @Html.TextBoxFor(m => m.DiaChi, new { @class = "form-control", placeholder = "Nhập địa chỉ" })
+                @Html.ValidationMessageFor(m => m.DiaChi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="text-right mt-3">
+        <button type="submit" class="btn btn-primary buttonedit">Tạo nhân viên</button>
+        @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary ml-2" })
+    </div>
+}

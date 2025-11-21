@@ -1,0 +1,263 @@
+﻿@{
+    Layout = null;
+    var tk = Session["TenDN"];
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Mẫu giao diện khách sạn Sona">
+    <meta name="keywords" content="Sona, khách sạn, du lịch, nghỉ dưỡng, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewBag.Title - Khách sạn Sona</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Content/css/elegant-icons.css" />
+    <link rel="stylesheet" href="~/Content/css/flaticon.css" />
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="~/Content/css/nice-select.css" />
+    <link rel="stylesheet" href="~/Content/css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="~/Content/css/magnific-popup.css" />
+    <link rel="stylesheet" href="~/Content/css/slicknav.min.css" />
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+</head>
+
+<body>
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Menu ẩn trên thiết bị di động -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="canvas-open">
+        <i class="icon_menu"></i>
+    </div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="canvas-close">
+            <i class="icon_close"></i>
+        </div>
+        <div class="search-icon search-switch">
+            <i class="icon_search"></i>
+        </div>
+        <div class="header-configure-area">
+            <div class="language-option">
+                <img src="~/Content/img/flag.jpg" alt="">
+                <span>VI <i class="fa fa-angle-down"></i></span>
+                <div class="flag-dropdown">
+                    <ul>
+                        <li><a href="#">EN</a></li>
+                        <li><a href="#">FR</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "DatPhongO")" class="bk-btn">Đặt phòng ngay</a>
+        </div>
+        <nav class="mainmenu mobile-menu">
+            <ul>
+                <li class="active"><a href="@Url.Action("Index", "TrangChu")">Trang chủ</a></li>
+                <li><a href="@Url.Action("Index", "XemPhong")">Phòng nghỉ</a></li>
+                <li><a href="@Url.Action("GioiThieu", "TrangChu")">Giới thiệu</a></li>
+                <li>
+                    <a href="./pages.html">Trang khác</a>
+                    <ul class="dropdown">
+                        <li><a href="./room-details.html">Chi tiết phòng</a></li>
+                        <li><a href="#">Phòng Deluxe</a></li>
+                        <li><a href="#">Phòng Gia đình</a></li>
+                        <li><a href="#">Phòng Cao cấp</a></li>
+                    </ul>
+                </li>
+                <li><a href="@Url.Action("LienHe", "TrangChu")">Liên hệ</a></li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="top-social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+        <ul class="top-widget">
+            <li><i class="fa fa-phone"></i> 0123 456 789</li>
+            <li><i class="fa fa-envelope"></i> lienhe@tuhuphuhotel.com</li>
+        </ul>
+    </div>
+
+    <!-- Header -->
+    <header class="header-section">
+        <div class="top-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="tn-left">
+                            <li><i class="fa fa-phone"></i> 0123 456 789</li>
+                            <li><i class="fa fa-envelope"></i> lienhe@tuhuphuhotel.com</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="tn-right">
+                            <div class="top-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                            <a href="@Url.Action("Index","DatPhongO")" class="bk-btn">Đặt phòng ngay</a>
+                            <div class="language-option">
+                                <img src="~/Content/img/flag.jpg" alt="">
+                                <span>VI <i class="fa fa-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <div class="logo">
+                            <a href="@Url.Action("Index", "TrangChu")">
+                                <img src="~/Content/img/logo.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10">
+                        <div class="nav-menu">
+                            <nav class="mainmenu">
+                                <ul class="d-flex align-items-center justify-content-end w-100">
+                                    <li class="active"><a href="@Url.Action("Index", "TrangChu")">Trang chủ</a></li>
+                                    <li><a href="@Url.Action("Index", "XemPhong")">Phòng nghỉ</a></li>
+                                    <li><a href="@Url.Action("GioiThieu", "TrangChu")">Giới thiệu</a></li>
+                                    <li>
+                                        <a href="#">Trang khác</a>
+                                        <ul class="dropdown">
+                                            <li><a href="./room-details.html">Chi tiết phòng</a></li>
+                                            <li><a href="./blog-details.html">Chi tiết bài viết</a></li>
+                                            <li><a href="#">Phòng Gia đình</a></li>
+                                            <li><a href="#">Phòng Cao cấp</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="./blog.html">Tin tức</a></li>
+                                    <li><a href="@Url.Action("LienHe", "TrangChu")">Liên hệ</a></li>
+
+                                    @if (tk == null)
+                                    {
+                                        <li><a href="@Url.Action("DangKy", "TrangChu")">Đăng ký</a></li>
+                                        <li><a href="@Url.Action("DangNhap", "TrangChu")">Đăng nhập</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <img src="@Url.Content("~/Content/img/user.png")" alt="Avatar" width="32" height="32" class="rounded-circle me-2" />
+                                                <span>@Session["UserName"]</span>
+                                            </a>
+                                            <ul class="dropdown">
+                                                <li><a href="@Url.Action("Index", "TaiKhoan")">Hồ sơ cá nhân</a></li>
+                                                <li><a href="@Url.Action("LichSuDatPhong", "TrangChu")">Lịch sử đặt phòng</a></li>
+                                                <li><a href="@Url.Action("DangXuat", "TrangChu")" class="text-danger">Đăng xuất</a></li>
+                                            </ul>
+                                        </li>
+                                    }
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Nội dung chính -->
+    <main>
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-text">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="ft-about">
+                            <div class="logo">
+                                <a href="#">
+                                    <img src="~/Content/img/footer-logo.png" alt="">
+                                </a>
+                            </div>
+                            <p>Chúng tôi mang đến trải nghiệm nghỉ dưỡng tốt nhất cho quý khách.<br /> Đặt phòng ngay hôm nay để tận hưởng kỳ nghỉ trọn vẹn.</p>
+                            <div class="fa-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="ft-contact">
+                            <h6>Liên hệ</h6>
+                            <ul>
+                                <li>0123 456 789</li>
+                                <li>lienhe@tuhuphuhotel.com</li>
+                                <li>123 Đường Nguyễn Huệ, Quận 1, TP.HCM</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="ft-newslatter">
+                            <h6>Nhận tin mới</h6>
+                            <p>Đăng ký để nhận các ưu đãi và tin tức mới nhất.</p>
+                            <form action="#" class="fn-form">
+                                <input type="text" placeholder="Nhập email của bạn">
+                                <button type="submit"><i class="fa fa-send"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright-option">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <ul>
+                            <li><a href="#">Liên hệ</a></li>
+                            <li><a href="#">Điều khoản sử dụng</a></li>
+                            <li><a href="#">Chính sách bảo mật</a></li>
+                            <li><a href="#">Chính sách môi trường</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="co-text">
+                            <p>
+                                &copy;
+                                <script>document.write(new Date().getFullYear());</script> - Bản quyền thuộc về <strong>TUHUPHU Hotel</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Js Plugins -->
+    <script src="~/Content/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/js/jquery.nice-select.min.js"></script>
+    <script src="~/Content/js/jquery-ui.min.js"></script>
+    <script src="~/Content/js/jquery.slicknav.js"></script>
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <script src="~/Content/js/main.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,89 @@
+﻿@model QuanLyKhachSan.Models.DangKyViewModel
+
+@{
+    ViewBag.Title = "Đăng ký";
+}
+
+<div class="main-wrapper login-body">
+    <div class="login-wrapper">
+        <div class="container">
+            <div class="loginbox">
+                <div class="login-left">
+                    <img class="img-fluid" src="~/assets/img/logo.png" alt="Logo">
+                </div>
+                <div class="login-right">
+                    <div class="login-right-wrap">
+                        <h1 class="mb-3">Register</h1>
+
+                        @if (ViewBag.Error != null)
+                        {
+                            <div class="alert alert-danger">@ViewBag.Error</div>
+                        }
+                        @if (TempData["Success"] != null)
+                        {
+                            <script>alert('@TempData["Success"]');</script>
+                        }
+
+                        @using (Html.BeginForm("DangKy", "TrangChu", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.HoTen, new { @class = "form-control", placeholder = "Họ và tên" })
+                                @Html.ValidationMessageFor(m => m.HoTen, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.NgaySinh, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                                @Html.ValidationMessageFor(m => m.NgaySinh, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group mb-3">
+                                @Html.LabelFor(m => m.GioiTinh)
+                                @Html.DropDownListFor(m => m.GioiTinh,
+                                    new SelectList(new List<SelectListItem> {
+                                        new SelectListItem { Text = "NAM", Value = "NAM" },
+                                        new SelectListItem { Text = "NỮ", Value = "NU" }
+                                    }, "Value", "Text"),
+                                    "Chọn giới tính",
+                                    new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.GioiTinh)
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.SoDienThoai, new { @class = "form-control", placeholder = "Số điện thoại" })
+                                @Html.ValidationMessageFor(m => m.SoDienThoai, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.DiaChi, new { @class = "form-control", placeholder = "Địa chỉ" })
+                                @Html.ValidationMessageFor(m => m.DiaChi, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.TenDN, new { @class = "form-control", placeholder = "Tên đăng nhập" })
+                                @Html.ValidationMessageFor(m => m.TenDN, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control", placeholder = "Mật khẩu" })
+                                @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group mb-0">
+                                <button class="btn btn-primary btn-block" type="submit">Register</button>
+                            </div>
+                        }
+
+                        <div class="login-or">
+                            <span class="or-line"></span> <span class="span-or">or</span>
+                        </div>
+                        <div class="social-login">
+                            <span>Register with</span>
+                            <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="google"><i class="fab fa-google"></i></a>
+                        </div>
+                        <div class="text-center dont-have">Already have an account? <a href="@Url.Action("DangNhap","TrangChu")">Login</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

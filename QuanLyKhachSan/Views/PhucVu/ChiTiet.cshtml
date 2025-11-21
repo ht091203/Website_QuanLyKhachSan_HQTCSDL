@@ -1,0 +1,123 @@
+﻿@model QuanLyKhachSan.Models.PhucVuChiTietViewModel
+
+@{
+    ViewBag.Title = "Phục vụ phòng " + Model.SoPhong;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="mt-5">
+                <h4 class="card-title float-left mt-2">
+                    Phục vụ phòng @Model.SoPhong (@Model.TenLoai)
+                </h4>
+                <a href="@Url.Action("Index", "PhucVu")" class="btn btn-secondary float-right">
+                    Quay lại
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5>Thông tin khách</h5>
+        <p><strong>Khách hàng:</strong> @Model.TenKH</p>
+        <p><strong>SĐT:</strong> @Model.SoDienThoai</p>
+        <p><strong>Mã ĐP:</strong> @Model.MaDP | <strong>Mã HĐ:</strong> @Model.MaHD</p>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5>Dịch vụ đã sử dụng</h5>
+
+        @if (Model.DichVuDaDung != null && Model.DichVuDaDung.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Tên dịch vụ</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th>Thành tiền</th>
+                            <th>Trạng thái</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var dv in Model.DichVuDaDung)
+                        {
+                            <tr>
+                                <td>@dv.TenDV</td>
+                                <td>@dv.SoLuong</td>
+                                <td>@String.Format("{0:N0}₫", dv.DonGia)</td>
+                                <td>@String.Format("{0:N0}₫", dv.DonGia * dv.SoLuong)</td>
+                                <td>@dv.TrangThai</td>
+                                <td>
+                                    @using (Html.BeginForm("XoaCTDichVu", "PhucVu", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="maHD" value="@dv.MaHD" />
+                                        <input type="hidden" name="maPhong" value="@dv.MaPhong" />
+                                        <input type="hidden" name="maDV" value="@dv.MaDV" />
+                                        <input type="hidden" name="maDP" value="@Model.MaDP" />
+                                        <button type="submit"
+                                                class="btn btn-sm btn-danger"
+                                                onclick="return confirm('Xóa dịch vụ @dv.TenDV ?');">
+                                            Xóa
+                                        </button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p>Chưa có dịch vụ nào.</p>
+        }
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Thêm dịch vụ</h5>
+
+        @using (Html.BeginForm("ThemCTDichVu", "PhucVu", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" name="MaDP" value="@Model.MaDP" />
+            <input type="hidden" name="MaPhong" value="@Model.MaPhong" />
+
+            <div class="form-group">
+                <label>Dịch vụ</label>
+                <select class="form-control" name="MaDV">
+                    @foreach (var dv in Model.DanhSachDichVu)
+                    {
+                        <option value="@dv.MaDV">
+                            @dv.TenDV (@String.Format("{0:N0}₫", dv.DonGia))
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Số lượng</label>
+                <input type="number" name="SoLuong" class="form-control" min="1" value="1" />
+            </div>
+
+            <div class="form-group">
+                <label>Trạng thái</label>
+                <input type="text" name="TrangThai" class="form-control" value="Hoàn tất" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Thêm dịch vụ</button>
+        }
+    </div>
+</div>

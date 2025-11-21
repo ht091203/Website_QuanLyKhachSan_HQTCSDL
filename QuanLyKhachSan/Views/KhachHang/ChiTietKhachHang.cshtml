@@ -1,0 +1,36 @@
+﻿@model QuanLyKhachSan.Models.KhachHang
+
+@{
+    ViewBag.Title = "Chi Tiết Khách Hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="mt-4">Chi Tiết Khách Hàng</h2>
+<hr />
+
+<div class="card shadow-sm p-4 mt-3 col-md-8">
+    <dl class="row mb-0">
+        <dt class="col-sm-4">Họ Tên</dt>
+        <dd class="col-sm-8">@Model.HoTen</dd>
+
+        <dt class="col-sm-4">Ngày Sinh</dt>
+        <dd class="col-sm-8">@Model.NgaySinh?.ToString("dd/MM/yyyy")</dd>
+
+        <dt class="col-sm-4">Giới Tính</dt>
+        <dd class="col-sm-8">@Model.GioiTinh</dd>
+
+        <dt class="col-sm-4">Số Điện Thoại</dt>
+        <dd class="col-sm-8">@Model.SoDienThoai</dd>
+
+        <dt class="col-sm-4">Email</dt>
+        <dd class="col-sm-8">@Model.Email</dd>
+
+        <dt class="col-sm-4">Địa Chỉ</dt>
+        <dd class="col-sm-8">@Model.DiaChi</dd>
+    </dl>
+
+    <div class="mt-4">
+        @Html.ActionLink("Chỉnh sửa", "ChinhSuaKhachHang", new { id = Model.MaKH }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary ms-2" })
+    </div>
+</div>

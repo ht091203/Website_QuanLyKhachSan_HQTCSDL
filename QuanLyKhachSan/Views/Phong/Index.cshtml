@@ -1,0 +1,88 @@
+﻿@model IEnumerable<QuanLyKhachSan.Models.PhongViewModel>
+@{
+    ViewBag.Title = "Danh sách phòng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="mt-5 d-flex justify-content-between align-items-center">
+                <h4 class="card-title">Danh sách phòng</h4>
+                @Html.ActionLink("Thêm phòng mới", "ThemPhong", null, new { @class = "btn btn-primary veiwbutton" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-sm-12">
+        <div class="card card-table">
+            <div class="card-body booking_card">
+                <div class="table-responsive">
+                    <table class="datatable table table-striped table-hover table-center mb-0">
+                        <thead>
+                            <tr>
+                                <th>Số phòng</th>
+                                <th>Vị trí</th>
+                                <th>Mô tả</th>
+                                <th>Loại phòng</th>
+                                <th>Trạng thái</th>
+                                <th class="text-right">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.SoPhong</td>
+                                    <td>@item.ViTri</td>
+                                    <td>@item.MoTaPhong</td>
+                                    <td>@item.TenLoai</td>
+                                    <td>
+                                        @if (item.TrangThai == "Trống" || item.TrangThai == "Sẵn sàng")
+                                        {
+                                            <span class="badge bg-success-light">Hoạt động</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger-light">Đang sử dụng</span>
+                                        }
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="dropdown dropdown-action">
+                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v ellipse_color"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                @Html.ActionLink("Chỉnh sửa", "ChinhSuaPhong", new { id = item.MaPhong }, new { @class = "dropdown-item" })
+                                                @Html.ActionLink("Chi tiết", "ChiTietPhong", new { id = item.MaPhong }, new { @class = "dropdown-item" })
+                                                @Html.ActionLink("Xóa", "XoaPhong", new { id = item.MaPhong }, new { @class = "dropdown-item text-danger" })
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Xác nhận Xóa -->
+<div id="delete_asset" class="modal fade delete-modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img src="~/assets/img/sent.png" alt="" width="50" height="46" />
+                <h3 class="delete_class">Bạn có chắc muốn xóa phòng này?</h3>
+                <div class="m-t-20">
+                    <a href="#" class="btn btn-white" data-dismiss="modal">Hủy</a>
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

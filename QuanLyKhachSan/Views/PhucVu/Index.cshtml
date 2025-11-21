@@ -1,0 +1,56 @@
+﻿@model IEnumerable<QuanLyKhachSan.Models.PhucVuPhongViewModel>
+
+@{
+    ViewBag.Title = "Phục vụ phòng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="mt-5">
+                <h4 class="card-title float-left mt-2">Phòng đang ở</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Mã ĐP</th>
+                        <th>Phòng</th>
+                        <th>Loại phòng</th>
+                        <th>Khách hàng</th>
+                        <th>SĐT</th>
+                        <th>Nhận thực tế</th>
+                        <th>Trả dự kiến</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MaDP</td>
+                            <td>@item.SoPhong</td>
+                            <td>@item.TenLoai</td>
+                            <td>@item.TenKH</td>
+                            <td>@item.SoDienThoai</td>
+                            <td>@item.ThoiGianNhanPhongThucTe</td>
+                            <td>@item.ThoiGianTraPhongDuKien</td>
+                            <td>
+                                @Html.ActionLink("Phục vụ", "ChiTiet", "PhucVu",
+                                    new { maDP = item.MaDP, maPhong = item.MaPhong },
+                                    new { @class = "btn btn-sm btn-primary" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

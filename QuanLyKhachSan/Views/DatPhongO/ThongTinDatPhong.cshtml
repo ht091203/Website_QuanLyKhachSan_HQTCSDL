@@ -1,0 +1,96 @@
+﻿@model QuanLyKhachSan.Models.DatPhongViewModel
+
+@{
+    ViewBag.Title = "Xác nhận thông tin đặt phòng";
+}
+
+<div class="container mt-4 mb-5">
+
+    <h3 class="text-center text-primary mb-4">
+        Thông tin đặt phòng
+    </h3>
+
+    @if (ViewBag.Success != null)
+    {
+        <div class="alert alert-success">@ViewBag.Success</div>
+    }
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <div class="card shadow-lg rounded-3 p-4">
+        <h5 class="text-secondary mb-3">Chi tiết phòng</h5>
+
+        <table class="table table-bordered">
+            <tr>
+                <th style="width:30%">Loại phòng</th>
+                <td>@Model.TenLoai</td>
+            </tr>
+            <tr>
+                <th style="width:30%">Số phòng</th>
+                <td>@Model.SoPhong</td>
+            </tr>
+            <tr>
+                <th>Giá phòng / đêm</th>
+                <td>@Model.DonGia.ToString("N0") ₫</td>
+            </tr>
+            <tr>
+                <th>Ngày nhận phòng</th>
+                <td>@Model.ThoiGianNhanPhong.ToString("dd/MM/yyyy")</td>
+            </tr>
+            <tr>
+                <th>Ngày trả phòng dự kiến</th>
+                <td>@Model.ThoiGianTraPhongDuKien.ToString("dd/MM/yyyy")</td>
+            </tr>
+            <tr>
+                <th>Số ngày ở</th>
+                <td>@Model.SoNgayO</td>
+            </tr>
+            <tr>
+                <th>Tổng tiền dự kiến</th>
+                <td><strong class="text-danger">@Model.TongTienDuKien.ToString("N0") ₫</strong></td>
+            </tr>
+        </table>
+
+        <hr />
+
+        <h5 class="text-secondary mb-3">Xác nhận đặt phòng</h5>
+
+        @using (Html.BeginForm("XacNhanDatPhong", "DatPhongO", FormMethod.Post))
+        {
+            @Html.HiddenFor(m => m.MaKH)
+            @Html.HiddenFor(m => m.MaPhong)
+            @Html.HiddenFor(m => m.ThoiGianNhanPhong)
+            @Html.HiddenFor(m => m.ThoiGianTraPhongDuKien)
+            @Html.HiddenFor(m => m.SoNgayO)
+            @Html.HiddenFor(m => m.DonGia)
+            @Html.HiddenFor(m => m.TongTienDuKien)
+            @Html.HiddenFor(m => m.NgayDat)
+
+            <div class="form-group mt-3">
+                <label>Tình trạng:</label>
+                <input type="text" class="form-control" value="Chờ xác nhận" readonly />
+            </div>
+
+            <div class="form-group mt-2">
+                <label>Phần trăm đặt cọc (từ 40% trở lên):</label>
+                @Html.DropDownListFor(m => m.PhanTramCoc,
+                    new SelectList(new List<int> { 40, 50, 60, 70, 80, 90, 100 }, Model.PhanTramCoc),
+                    "Chọn phần trăm",
+                    new { @class = "form-control" })
+            </div>
+
+            <div class="form-group mt-2">
+                <label>Trạng thái cọc:</label>
+                <input type="text" class="form-control" value="Chưa cọc" readonly />
+            </div>
+
+            <div class="text-end mt-4">
+                <button type="submit" class="btn btn-success px-4">Xác nhận đặt phòng</button>
+                <a href="@Url.Action("Index", "XemPhong")" class="btn btn-secondary ms-2">Quay lại</a>
+            </div>
+        }
+    </div>
+</div>

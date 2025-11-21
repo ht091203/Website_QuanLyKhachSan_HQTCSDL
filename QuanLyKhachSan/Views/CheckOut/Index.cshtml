@@ -1,0 +1,72 @@
+﻿@model IEnumerable<QuanLyKhachSan.Models.DatPhongViewModel>
+@{
+    ViewBag.Title = "Check-out";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="mt-5">
+                <h4 class="card-title float-left mt-2">Danh sách phòng đang ở (Check-out)</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card card-table">
+            <div class="card-body booking_card">
+                <div class="table-responsive">
+                    <table class="datatable table table-striped table-hover table-center mb-0">
+                        <thead>
+                            <tr>
+                                <th>Mã đặt phòng</th>
+                                <th>Ngày nhận</th>
+                                <th>Ngày trả dự kiến</th>
+                                <th>Số ngày ở</th>
+                                <th>Trạng thái cọc</th>
+                                <th class="text-right">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.MaDP</td>
+
+                                    <td>
+                                        @((item.ThoiGianNhanPhongThucTe ?? item.ThoiGianNhanPhong)?.ToString("dd-MM-yyyy HH:mm"))
+                                    </td>
+
+                                    <td>
+                                        @((item.ThoiGianTraPhongThucTe ?? item.ThoiGianTraPhongDuKien)?.ToString("dd-MM-yyyy HH:mm"))
+                                    </td>
+
+                                    <td>@item.SoNgayO</td>
+
+                                    <td>
+                                        <span class="badge @(item.TrangThaiCoc == "Đã cọc" ? "badge-success" : "badge-danger")">
+                                            @item.TrangThaiCoc
+                                        </span>
+                                    </td>
+
+                                    <td class="text-right">
+                                        @Html.ActionLink(
+                                            "Check-out",
+                                            "ChiTiet",
+                                            "CheckOut",
+                                            new { maDP = item.MaDP },
+                                            new { @class = "btn btn-sm btn-danger" }
+                                        )
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

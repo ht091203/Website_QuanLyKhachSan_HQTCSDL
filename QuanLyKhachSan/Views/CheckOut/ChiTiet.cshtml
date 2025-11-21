@@ -1,0 +1,118 @@
+﻿@model QuanLyKhachSan.Models.CheckOutChiTietViewModel
+@{
+    ViewBag.Title = "Check-out đặt phòng #" + Model.MaDP;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="mt-5">
+                <h4 class="card-title float-left mt-2">
+                    Check-out đặt phòng #@Model.MaDP
+                </h4>
+                <a href="@Url.Action("Index", "CheckOut")" class="btn btn-secondary float-right">
+                    Quay lại
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5>Thông tin khách</h5>
+        <p><strong>Khách hàng:</strong> @Model.TenKH (@Model.SoDienThoai)</p>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5>Chi tiết phòng</h5>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Số phòng</th>
+                    <th>Loại phòng</th>
+                    <th>Số ngày ở</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChiTietPhong)
+                {
+                    <tr>
+                        <td>@item.SoPhong</td>
+                        <td>@item.LoaiPhong</td>
+                        <td>@item.SoNgayO</td>
+                        <td>@item.DonGia.ToString("N0") ₫</td>
+                        <td>@item.ThanhTien.ToString("N0") ₫</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <h5>Chi tiết dịch vụ</h5>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Tên dịch vụ</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ChiTietDichVu != null && Model.ChiTietDichVu.Any())
+                {
+                    foreach (var item in Model.ChiTietDichVu)
+                    {
+                        <tr>
+                            <td>@item.TenDV</td>
+                            <td>@item.SoLuong</td>
+                            <td>@item.DonGia.ToString("N0") ₫</td>
+                            <td>@item.ThanhTien.ToString("N0") ₫</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center">Chưa sử dụng dịch vụ nào.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <hr />
+        <h5>Tổng tiền</h5>
+        <p>Tiền phòng: <strong>@Model.TongTienPhong.ToString("N0") ₫</strong></p>
+        <p>Tiền dịch vụ: <strong>@Model.TongTienDichVu.ToString("N0") ₫</strong></p>
+        <p>Đã cọc: <strong>@Model.TongCoc.ToString("N0") ₫</strong></p>
+        <p class="text-danger">Còn phải trả: <strong>@Model.ConPhaiTra.ToString("N0") ₫</strong></p>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Xác nhận Check-out</h5>
+        @using (Html.BeginForm("XacNhan", "CheckOut", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="maDP" value="@Model.MaDP" />
+
+            <div class="form-group">
+                <label>Phương thức thanh toán</label>
+                <select name="PTTT" class="form-control">
+                    <option value="Tiền mặt" @(Model.PTTT == "Tiền mặt" ? "selected" : "")>Tiền mặt</option>
+                    <option value="Chuyển khoản">Chuyển khoản (VNPay)</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Xác nhận Check-out
+            </button>
+        }
+    </div>
+</div>

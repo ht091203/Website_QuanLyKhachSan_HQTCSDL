@@ -1,0 +1,100 @@
+﻿@model QuanLyKhachSan.Models.DichVuViewModel
+
+@{
+    ViewBag.Title = "Thêm Dịch Vụ";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <h3 class="page-title mt-5">Thêm Dịch Vụ</h3>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("Them", "DichVu", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MaDV)
+                    @Html.EditorFor(model => model.MaDV, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MaDV, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TenDV)
+                    @Html.EditorFor(model => model.TenDV, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TenDV, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DonGiaGoc)
+                    @Html.EditorFor(model => model.DonGiaGoc, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DonGiaGoc, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SoLuong)
+                    @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DonGiaThucTe)
+                    @Html.EditorFor(model => model.DonGiaThucTe, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DonGiaThucTe, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TrangThai)
+                    @Html.DropDownListFor(model => model.TrangThai,
+                        new SelectList(new[] { "Hoạt động", "Ngừng cung cấp" }),
+                        "Chọn trạng thái",
+                        new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group mt-3">
+                    <input type="submit" value="Thêm Dịch Vụ" class="btn btn-primary" />
+                    @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary ml-2" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="formtype">
+                <div class="form-group">
+                    <label>Mã Hóa Đơn</label>
+                    @Html.EditorFor(model => model.MaHD, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                <div class="form-group">
+                    <label>Mã Phòng</label>
+                    @Html.EditorFor(model => model.MaPhong, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                <div class="form-group">
+                    <label>Mô Tả</label>
+                    @Html.TextAreaFor(model => model.MoTa, new { @class = "form-control", rows = 3 })
+                </div>
+
+                <div class="form-group">
+                    <label>Ghi chú nội bộ</label>
+                    <textarea class="form-control" rows="3" placeholder="Ghi chú cho nhân viên..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Ngày thêm dịch vụ</label>
+                    <input type="date" class="form-control" />
+                </div>
+            </div>
+        </div>
+    </div>
+}

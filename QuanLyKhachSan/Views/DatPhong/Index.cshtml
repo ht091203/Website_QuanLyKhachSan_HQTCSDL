@@ -1,0 +1,102 @@
+﻿@model IEnumerable<QuanLyKhachSan.Models.DatPhongViewModel>
+@{
+    ViewBag.Title = "Danh sách đặt phòng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="mt-5">
+                <h4 class="card-title float-left mt-2">Danh sách đặt phòng</h4>
+                @*@Html.ActionLink("Thêm đặt phòng", "ThemDatPhong", null, new { @class = "btn btn-primary float-right veiwbutton" })*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card card-table">
+            <div class="card-body booking_card">
+                <div class="table-responsive">
+                    <table class="datatable table table-striped table-hover table-center mb-0">
+                        <thead>
+                            <tr>
+                                <th>Mã đặt phòng</th>
+                                <th>Ngày đặt</th>
+                                <th>Ngày nhận</th>
+                                <th>Ngày trả dự kiến</th>
+                                <th>Số ngày ở</th>
+                                <th>Trạng thái</th>
+                                <th>Trạng thái cọc</th>
+                                <th class="text-right">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.MaDP</td>
+                                    <td>@item.NgayDat.ToString("dd-MM-yyyy")</td>
+                                    <td>
+                                        @((item.ThoiGianNhanPhongThucTe ?? item.ThoiGianNhanPhong)?.ToString("dd-MM-yyyy HH:mm"))
+                                    </td>
+
+                                    <td>
+                                        @((item.ThoiGianTraPhongThucTe ?? item.ThoiGianTraPhongDuKien)?.ToString("dd-MM-yyyy HH:mm"))
+                                    </td>
+
+                                    <td>@item.SoNgayO</td>
+
+                                    <td>
+                                        <span class="badge @(item.TinhTrang == "Hoàn tất" ? "badge-secondary" :
+                                                             item.TinhTrang == "Đang ở" ? "badge-success" :
+                                                             "badge-warning")">
+                                            @item.TinhTrang
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <span class="badge @(item.TrangThaiCoc == "Đã cọc" ? "badge-success" : "badge-danger")">
+                                            @item.TrangThaiCoc
+                                        </span>
+                                    </td>
+
+                                    <td class="text-right">
+                                        <div class="dropdown dropdown-action">
+                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v ellipse_color"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+
+                                                @Html.ActionLink("Chi tiết", "ChiTietDatPhong", new { id = item.MaDP }, new { @class = "dropdown-item" })
+                                                @Html.ActionLink("Chỉnh sửa", "ChinhSuaDatPhong", new { id = item.MaDP }, new { @class = "dropdown-item" })
+                                                @Html.ActionLink("Xoá", "XoaDatPhong", new { id = item.MaDP }, new { @class = "dropdown-item text-danger" })
+
+                                                <div class="dropdown-divider"></div>
+
+                                                @if (item.TinhTrang == "Đã xác nhận" || item.TinhTrang == "Đã cọc")
+                                                {
+                                                    <form action="@Url.Action("XacNhanCheckIn", "DatPhong")" method="post" class="dropdown-item p-0">
+                                                        @Html.AntiForgeryToken()
+                                                        <input type="hidden" name="maDP" value="@item.MaDP" />
+                                                        <button type="submit" class="btn btn-link text-success w-100 text-left">
+                                                            <i class="fa fa-sign-in-alt"></i> Check-in
+                                                        </button>
+                                                    </form>
+                                                }
+                                                @* Không xử lý Check-out ở đây nữa. Check-out tách sang CheckOutController *@
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

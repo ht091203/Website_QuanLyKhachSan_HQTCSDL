@@ -1,0 +1,143 @@
+﻿@model QuanLyKhachSan.Models.DatPhongViewModel
+
+@{
+    ViewBag.Title = "Chỉnh sửa đặt phòng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <h3 class="page-title mt-5">Chỉnh sửa đặt phòng</h3>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("ChinhSuaDatPhong", "DatPhong", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row formtype">
+
+        @Html.HiddenFor(m => m.MaDP)
+
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.MaDP, "Mã đặt phòng")
+                <input type="text" class="form-control" id="MaDP"
+                       value="@Model.MaDP.ToString()" readonly />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.MaKH, "Tên khách hàng")
+                <input type="text" class="form-control" id="TenKH"
+                       value="@Model.TenKH.ToString()" readonly />
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.SoPhong, "Số phòng")
+                <input type="text" class="form-control" id="SoPhong"
+                       value="@Model.SoPhong.ToString()" readonly />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.DonGia, "Đơn giá phòng")
+                <input type="text" class="form-control" id="DonGia"
+                       value="@Model.DonGia.ToString("N0")" readonly />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.SoNgayO, "Số ngày ở")
+                <input type="text" class="form-control" id="SoNgayO"
+                       value="@Model.SoNgayO.ToString()" readonly />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.TrangThaiCoc, "Trạng thái Cọc")
+                <input type="text" class="form-control" id="TrangThaiCoc"
+                       value="@Model.TrangThaiCoc.ToString()" readonly />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.SoTienCoc, "Số tiền đã cọc (₫)")
+                <input type="text" class="form-control" id="SoTienCoc"
+                       value="@Model.SoTienCoc.ToString("N0")" readonly />
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.Label("Tổng tiền (₫)")
+                <input type="text" class="form-control" id="TongTien"
+                       value="@Model.TongTienDuKien.ToString("N0")" readonly />
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.NgayDat, "Ngày đặt phòng dự kiến")
+                <input type="text" class="form-control" id="NgayDat"
+                       value="@Model.NgayDat.ToString()" readonly />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.ThoiGianNhanPhong, "Ngày nhận phòng dự kiến")
+                <input type="datetime-local"
+                       class="form-control"
+                       id="ThoiGianNhanPhong"
+                       name="ThoiGianNhanPhong"
+                       value="@(Model.ThoiGianNhanPhong?.ToString("yyyy-MM-ddTHH:mm") ?? "")" />
+                @Html.ValidationMessageFor(m => m.ThoiGianNhanPhong, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.ThoiGianTraPhongDuKien, "Ngày trả phòng dự kiến")
+                <input type="datetime-local"
+                       class="form-control"
+                       id="ThoiGianTraPhongDuKien"
+                       name="ThoiGianTraPhongDuKien"
+                       value="@(Model.ThoiGianTraPhongDuKien?.ToString("yyyy-MM-ddTHH:mm") ?? "")" />
+                @Html.ValidationMessageFor(m => m.ThoiGianTraPhongDuKien, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.TinhTrang, "Tình trạng")
+                @Html.DropDownListFor(
+                    m => m.TinhTrang,
+                    new SelectList(new[] { "Đã xác nhận", "Chờ xác nhận", "Hoàn tất", "Đã huỷ" }, Model.TinhTrang),
+                    "Trình trạng đặt phòng",
+                    new { @class = "form-control" }
+                )
+                @Html.ValidationMessageFor(m => m.TinhTrang, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-12 text-right mt-3">
+            <input type="submit" value="Lưu" class="btn btn-primary" />
+            @Html.ActionLink("Trở về", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+}
+

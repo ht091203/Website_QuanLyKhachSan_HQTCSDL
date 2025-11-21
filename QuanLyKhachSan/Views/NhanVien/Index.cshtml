@@ -1,0 +1,135 @@
+﻿@model IEnumerable<QuanLyKhachSan.Models.NhanVien>
+
+@{
+    ViewBag.Title = "Danh sách nhân viên";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="mt-5">
+                <h4 class="card-title float-left mt-2">Danh sách nhân viên</h4>
+                <a href="@Url.Action("Create", "NhanVien")" class="btn btn-primary float-right veiwbutton">
+                    <i class="fa fa-plus"></i> Thêm nhân viên
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bộ lọc tìm kiếm -->
+<div class="row mb-4">
+    <div class="col-lg-12">
+        <form method="get" action="@Url.Action("Index", "NhanVien")">
+            <div class="row formtype">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Mã nhân viên</label>
+                        <input class="form-control" type="text" name="maNV" placeholder="Nhập mã NV" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Tên nhân viên</label>
+                        <input class="form-control" type="text" name="tenNV" placeholder="Nhập tên" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Chức vụ</label>
+                        <select class="form-control" name="chucVu">
+                            <option value="">-- Tất cả --</option>
+                            <option>Quản lý</option>
+                            <option>Lễ tân</option>
+                            <option>Kế toán</option>
+                            <option>Phục vụ</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <button type="submit" class="btn btn-success btn-block mt-0">Tìm kiếm</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Bảng danh sách -->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card card-table">
+            <div class="card-body booking_card">
+                <div class="table-responsive">
+                    <table class="datatable table table-striped table-hover table-center mb-0">
+                        <thead class="thead-success">
+                            <tr>
+                                <th>Tên nhân viên</th>
+                                <th>Mã NV</th>
+                                <th>Email</th>
+                                <th>Điện thoại</th>
+                                <th>Ngày sinh</th>
+                                <th>Giới tính</th>
+                                <th>Địa chỉ</th>
+                                <th class="text-right">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <h2 class="table-avatar">
+                                            <a href="@Url.Action("Details", "NhanVien", new { id = item.MaNV })"
+                                               class="avatar avatar-sm mr-2">
+                                                <img class="avatar-img rounded-circle"
+                                                     src="~/assets/img/profiles/default.jpg"
+                                                     alt="User Image">
+                                            </a>
+                                            <a href="@Url.Action("Details", "NhanVien", new { id = item.MaNV })">
+                                                @item.HoTen <span>#@item.MaNV</span>
+                                            </a>
+                                        </h2>
+                                    </td>
+                                    <td>@item.MaNV</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.SoDienThoai</td>
+                                    <td>@item.NgaySinh?.ToString("dd/MM/yyyy")</td>
+                                    <td>@item.GioiTinh</td>
+                                    <td>@item.DiaChi</td>
+                                    <td class="text-right">
+                                        <div class="dropdown dropdown-action">
+                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v ellipse_color"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="@Url.Action("Edit", "NhanVien", new { id = item.MaNV })">
+                                                    <i class="fas fa-pencil-alt m-r-5"></i> Sửa
+                                                </a>
+                                                <a class="dropdown-item text-danger" href="@Url.Action("Delete", "NhanVien", new { id = item.MaNV })"
+                                                   onclick="return confirm('Xác nhận xóa nhân viên này?');">
+                                                    <i class="fas fa-trash-alt m-r-5"></i> Xóa
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    @if (!Model.Any())
+                    {
+                        <div class="alert alert-warning mt-3">
+                            Không có nhân viên nào được tìm thấy.
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

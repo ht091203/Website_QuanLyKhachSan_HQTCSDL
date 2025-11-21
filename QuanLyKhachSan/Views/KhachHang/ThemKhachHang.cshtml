@@ -1,0 +1,112 @@
+﻿@model QuanLyKhachSan.Models.KhachHang
+
+@{
+    ViewBag.Title = "Thêm khách hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <h3 class="page-title mt-5">Thêm Khách Hàng</h3>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("Them", "KhachHang", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <!-- Form thông tin khách hàng Razor -->
+        <div class="col-md-6">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.HoTen)
+                    @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NgaySinh)
+                    @Html.TextBoxFor(model => model.NgaySinh, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GioiTinh)
+                    @Html.DropDownListFor(model => model.GioiTinh, new SelectList(new[] { "NAM", "NỮ" }), "Chọn giới tính", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SoDienThoai)
+                    @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email)
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DiaChi)
+                    @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group mt-3">
+                    <input type="submit" value="Thêm Khách Hàng" class="btn btn-primary" />
+                    @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary ml-2" })
+                </div>
+            </div>
+        </div>
+
+        <!-- Form giao diện mẫu Add Customer -->
+        <div class="col-md-6">
+            <div class="formtype">
+                <div class="form-group">
+                    <label>Booking ID</label>
+                    <input class="form-control" type="text" value="BKG-0001" disabled />
+                </div>
+                <div class="form-group">
+                    <label>Room Type</label>
+                    <select class="form-control">
+                        <option>Single</option>
+                        <option>Double</option>
+                        <option>Quad</option>
+                        <option>King</option>
+                        <option>Suite</option>
+                        <option>Villa</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Total Members</label>
+                    <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Arrival Date</label>
+                    <input type="date" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Depature Date</label>
+                    <input type="date" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+}

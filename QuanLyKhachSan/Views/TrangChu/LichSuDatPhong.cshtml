@@ -1,0 +1,51 @@
+﻿@model List<QuanLyKhachSan.Models.LichSuDatPhongViewModel>
+@{
+    ViewBag.Title = "Lịch sử đặt phòng";
+}
+
+<div class="container mt-4">
+    <h3>Lịch sử đặt phòng</h3>
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Mã Đặt Phòng</th>
+                <th>Ngày Đặt</th>
+                <th>Ngày Nhận Phòng</th>
+                <th>Ngày Trả Dự Kiến</th>
+                <th>Tình Trạng</th>
+                <th>Tổng Tiền</th>
+                <th>Trạng Thái Cọc</th>
+                <th>Phòng</th>
+                <th>Đơn Giá</th>
+                <th>Số Ngày Ở</th>
+                <th>Thành Tiền</th>
+                <th>Mã Phiếu Cọc</th>
+                <th>Ngày Cọc</th>
+                <th>Số Tiền Cọc</th>
+                <th>PT Thanh Toán</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaDP</td>
+                    <td>@item.NgayDat.ToString("dd/MM/yyyy")</td>
+                    <td>@(item.ThoiGianNhanPhong?.ToString("dd/MM/yyyy HH:mm") )</td>
+                    <td>@(item.ThoiGianTraPhongDuKien?.ToString("dd/MM/yyyy HH:mm") )</td>
+                    <td>@item.TinhTrang</td>
+                    <td>@(item.TongTienDuKien.ToString("N0") + " ₫" )</td>
+                    <td>@item.TrangThaiCoc</td>
+                    <td>@item.MaPhong</td>
+                    <td>@(item.DonGia?.ToString("N0"))</td>
+                    <td>@(item.SoNgayO?.ToString())</td>
+                    <td>@(item.ThanhTien?.ToString("N0"))</td>
+                    <td>@(item.MaPC?.ToString())</td>
+                    <td>@(item.NgayCoc?.ToString("dd/MM/yyyy"))</td>
+                    <td>@(item.SoTienCoc?.ToString("N0"))</td>
+                    <td>@(item.PTTT)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

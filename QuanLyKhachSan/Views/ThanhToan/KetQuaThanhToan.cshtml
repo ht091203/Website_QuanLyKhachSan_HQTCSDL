@@ -1,0 +1,52 @@
+﻿@model QuanLyKhachSan.Models.VnPayResponseModel
+@{
+    ViewBag.Title = "Kết quả thanh toán VNPay";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="card shadow-lg p-4 rounded-4">
+        @if (Model.Success)
+        {
+            <div class="text-center text-success mb-4">
+                <i class="bi bi-check-circle-fill" style="font-size: 3rem;"></i>
+                <h3 class="mt-3">Thanh toán thành công!</h3>
+            </div>
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Mã đơn hàng</th>
+                    <td>@Model.OrderId</td>
+                </tr>
+                <tr>
+                    <th>Mã giao dịch</th>
+                    <td>@Model.TransactionId</td>
+                </tr>
+                <tr>
+                    <th>Số tiền</th>
+                    <td>@Model.Amount.ToString("N0") ₫</td>
+                </tr>
+                <tr>
+                    <th>Trạng thái</th>
+                    <td class="text-success">Thành công</td>
+                </tr>
+            </table>
+
+            <div class="text-center mt-4">
+                <a href="@Url.Action("Index", "TrangChu")" class="btn btn-success px-4">Về trang chủ</a>
+            </div>
+        }
+        else
+        {
+            <div class="text-center text-danger mb-4">
+                <i class="bi bi-x-circle-fill" style="font-size: 3rem;"></i>
+                <h3 class="mt-3">Thanh toán thất bại!</h3>
+            </div>
+
+            <p class="text-center">@Model.Message</p>
+
+            <div class="text-center mt-4">
+                <a href="@Url.Action("Index", "TrangChu")" class="btn btn-secondary px-4">Quay lại</a>
+            </div>
+        }
+    </div>
+</div>

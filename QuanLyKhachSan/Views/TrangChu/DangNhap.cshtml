@@ -1,0 +1,52 @@
+﻿@model QuanLyKhachSan.Models.DangNhapViewModel
+
+@{
+    ViewBag.Title = "Đăng nhập";
+}
+
+<div class="main-wrapper login-body">
+    <div class="login-wrapper">
+        <div class="container">
+            <div class="loginbox">
+                <div class="login-left">
+                    <img class="img-fluid" src="~/assets/img/logo.png" alt="Logo">
+                </div>
+                <div class="login-right">
+                    <div class="login-right-wrap">
+                        <h1>Login</h1>
+                        <p class="account-subtitle">Access to our dashboard</p>
+
+                        @using (Html.BeginForm("DangNhap", "TrangChu", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.TenDN, new { @class = "form-control", placeholder = "Tên đăng nhập / Email" })
+                                @Html.ValidationMessageFor(m => m.TenDN, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control", placeholder = "Mật khẩu" })
+                                @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block" type="submit">Login</button>
+                            </div>
+                        }
+
+                        <div class="text-center forgotpass"><a href="#">Forgot Password?</a></div>
+                        <div class="login-or">
+                            <span class="or-line"></span> <span class="span-or">or</span>
+                        </div>
+                        <div class="social-login">
+                            <span>Login with</span>
+                            <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="google"><i class="fab fa-google"></i></a>
+                        </div>
+                        <div class="text-center dont-have">Don’t have an account? <a href="@Url.Action("DangKy","TrangChu")">Register</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@model QuanLyKhachSan.Models.LoaiPhong
+
+@{
+    ViewBag.Title = "Thêm Loại Phòng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <h3 class="page-title mt-5">Thêm loại phòng</h3>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row formtype mt-4">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TenLoai, "Tên loại phòng")
+                @Html.TextBoxFor(model => model.TenLoai, new { @class = "form-control", placeholder = "Nhập tên loại phòng..." })
+                @Html.ValidationMessageFor(model => model.TenLoai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DonGia, "Đơn giá (VNĐ)")
+                @Html.TextBoxFor(model => model.DonGia, new { @class = "form-control", placeholder = "Nhập đơn giá..." })
+                @Html.ValidationMessageFor(model => model.DonGia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="form-group">
+                @Html.LabelFor(model => model.MoTa, "Mô tả")
+                @Html.TextAreaFor(model => model.MoTa, new { @class = "form-control", rows = "4", placeholder = "Nhập mô tả cho loại phòng..." })
+                @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Lưu loại phòng</button>
+    @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary mt-3 ml-2" })
+}

@@ -1,0 +1,101 @@
+﻿@model IEnumerable<QuanLyKhachSan.Models.LoaiPhongViewModel>
+
+@{
+    ViewBag.Title = "Danh sách loại phòng";
+}
+
+<!-- Breadcrumb Section Begin -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>Loại Phòng Còn Trống</h2>
+                    <div class="bt-option">
+                        <a href="@Url.Action("Index", "Home")">Trang chủ</a>
+                        <span>Loại phòng</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section End -->
+<!-- Rooms Section Begin -->
+<section class="rooms-section spad">
+    <div class="container">
+        <div class="row">
+            @if (Model != null && Model.GetEnumerator().MoveNext())
+            {
+                foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="room-item">
+                            <img src="@Url.Content("~/Content/img/room/" + item.Anh)"
+                                 alt="@item.TenLoai"
+                                 onerror="this.src='@Url.Content("~/Content/img/room/room-1.jpg")'"
+                                 class="img-fluid rounded" />
+
+                            <div class="ri-text">
+                                <h4>@item.TenLoai</h4>
+                                <h3>@item.DonGia.ToString("N0") ₫<span>/Đêm</span></h3>
+
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="r-o">Sức chứa:</td>
+                                            <td>@item.SucChua người</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Còn trống:</td>
+                                            <td>@item.SoPhongTrong phòng</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Mô tả:</td>
+                                            <td>@item.MoTa</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <a href="@Url.Action("XemChiTiet", "XemPhong", new { id = item.MaLP })"
+                                   class="primary-btn">Xem chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-lg-12 text-center">
+                    <p>Không có loại phòng nào còn trống trong thời gian đã chọn.</p>
+                </div>
+            }
+
+            <div class="col-lg-12">
+                <div class="room-pagination">
+                    @if (ViewBag.TotalPages > 1)
+                    {
+                        for (int i = 1; i <= ViewBag.TotalPages; i++)
+                        {
+                            if (i == ViewBag.Page)
+                            {
+                                <a href="@Url.Action("Index", new { page = i })" class="active">@i</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Index", new { page = i })">@i</a>
+                            }
+                        }
+
+                        if (ViewBag.Page < ViewBag.TotalPages)
+                        {
+                            <a href="@Url.Action("Index", new { page = ViewBag.Page + 1 })">
+                                Next <i class="fa fa-long-arrow-right"></i>
+                            </a>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

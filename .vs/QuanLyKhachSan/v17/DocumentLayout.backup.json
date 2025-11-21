@@ -1,0 +1,93 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ht0912\\Desktop\\HUIT\\HQTCSDL\\DoAn\\QuanLyKhachSan\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6D7D3FCF-1388-4389-A825-2F77DCDC4E1F}|QuanLyKhachSan\\QuanLyKhachSan.csproj|c:\\users\\ht0912\\desktop\\huit\\hqtcsdl\\doan\\quanlykhachsan\\quanlykhachsan\\controllers\\thanhtoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D7D3FCF-1388-4389-A825-2F77DCDC4E1F}|QuanLyKhachSan\\QuanLyKhachSan.csproj|solutionrelative:quanlykhachsan\\controllers\\thanhtoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D7D3FCF-1388-4389-A825-2F77DCDC4E1F}|QuanLyKhachSan\\QuanLyKhachSan.csproj|c:\\users\\ht0912\\desktop\\huit\\hqtcsdl\\doan\\quanlykhachsan\\quanlykhachsan\\controllers\\admin\\hoadoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D7D3FCF-1388-4389-A825-2F77DCDC4E1F}|QuanLyKhachSan\\QuanLyKhachSan.csproj|solutionrelative:quanlykhachsan\\controllers\\admin\\hoadoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D7D3FCF-1388-4389-A825-2F77DCDC4E1F}|QuanLyKhachSan\\QuanLyKhachSan.csproj|c:\\users\\ht0912\\desktop\\huit\\hqtcsdl\\doan\\quanlykhachsan\\quanlykhachsan\\controllers\\admin\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D7D3FCF-1388-4389-A825-2F77DCDC4E1F}|QuanLyKhachSan\\QuanLyKhachSan.csproj|solutionrelative:quanlykhachsan\\controllers\\admin\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D7D3FCF-1388-4389-A825-2F77DCDC4E1F}|QuanLyKhachSan\\QuanLyKhachSan.csproj|C:\\Users\\ht0912\\Desktop\\HUIT\\HQTCSDL\\DoAn\\QuanLyKhachSan\\quanlykhachsan\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6D7D3FCF-1388-4389-A825-2F77DCDC4E1F}|QuanLyKhachSan\\QuanLyKhachSan.csproj|solutionrelative:quanlykhachsan\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_LayoutAdmin.cshtml",
+              "DocumentMoniker": "C:\\Users\\ht0912\\Desktop\\HUIT\\HQTCSDL\\DoAn\\QuanLyKhachSan\\QuanLyKhachSan\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "RelativeDocumentMoniker": "QuanLyKhachSan\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "ToolTip": "C:\\Users\\ht0912\\Desktop\\HUIT\\HQTCSDL\\DoAn\\QuanLyKhachSan\\QuanLyKhachSan\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "RelativeToolTip": "QuanLyKhachSan\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "ViewState": "AgIAAEcAAAAAAAAAAADwv2AAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-04T12:03:33.621Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ThanhToanController.cs",
+              "DocumentMoniker": "C:\\Users\\ht0912\\Desktop\\HUIT\\HQTCSDL\\DoAn\\QuanLyKhachSan\\QuanLyKhachSan\\Controllers\\ThanhToanController.cs",
+              "RelativeDocumentMoniker": "QuanLyKhachSan\\Controllers\\ThanhToanController.cs",
+              "ToolTip": "C:\\Users\\ht0912\\Desktop\\HUIT\\HQTCSDL\\DoAn\\QuanLyKhachSan\\QuanLyKhachSan\\Controllers\\ThanhToanController.cs",
+              "RelativeToolTip": "QuanLyKhachSan\\Controllers\\ThanhToanController.cs",
+              "ViewState": "AgIAAJ4AAAAAAAAAAAAqwKkAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-21T10:42:23.714Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CheckOutController.cs",
+              "DocumentMoniker": "C:\\Users\\ht0912\\Desktop\\HUIT\\HQTCSDL\\DoAn\\QuanLyKhachSan\\QuanLyKhachSan\\Controllers\\Admin\\CheckOutController.cs",
+              "RelativeDocumentMoniker": "QuanLyKhachSan\\Controllers\\Admin\\CheckOutController.cs",
+              "ToolTip": "C:\\Users\\ht0912\\Desktop\\HUIT\\HQTCSDL\\DoAn\\QuanLyKhachSan\\QuanLyKhachSan\\Controllers\\Admin\\CheckOutController.cs",
+              "RelativeToolTip": "QuanLyKhachSan\\Controllers\\Admin\\CheckOutController.cs",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAuwM8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-21T10:42:16.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HoaDonController.cs",
+              "DocumentMoniker": "C:\\Users\\ht0912\\Desktop\\HUIT\\HQTCSDL\\DoAn\\QuanLyKhachSan\\QuanLyKhachSan\\Controllers\\Admin\\HoaDonController.cs",
+              "RelativeDocumentMoniker": "QuanLyKhachSan\\Controllers\\Admin\\HoaDonController.cs",
+              "ToolTip": "C:\\Users\\ht0912\\Desktop\\HUIT\\HQTCSDL\\DoAn\\QuanLyKhachSan\\QuanLyKhachSan\\Controllers\\Admin\\HoaDonController.cs",
+              "RelativeToolTip": "QuanLyKhachSan\\Controllers\\Admin\\HoaDonController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABEAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-21T10:24:52.097Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
